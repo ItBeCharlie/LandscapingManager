@@ -7,10 +7,16 @@
 
 	let oldName = '';
 
+	export let importServices: string[] = [];
+
 	let availableServices: Service[] = [];
 
-	for (let i = 0; i <= 5; i++)
-		availableServices.push({ text: 'New Service', focused: false, editing: false });
+	importServices.map((serviceName, i) => {
+		availableServices.push({ text: serviceName, focused: false, editing: false });
+	});
+
+	// for (let i = 0; i <= 5; i++)
+	// 	availableServices.push({ text: 'New Service', focused: false, editing: false });
 
 	const addService = () => {
 		availableServices = [
@@ -64,7 +70,7 @@
 			type="button"
 			on:click={addService}
 			class="btn btn-outline-success border-3 btn-info text-center text-warning fw-bold w-50 my-2 fs-5 mx-auto"
-			>Add Service</button
+			>Add Customer</button
 		>
 	</div>
 
