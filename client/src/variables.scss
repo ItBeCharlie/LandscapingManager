@@ -1,0 +1,12 @@
+/* Variables and mixins declared here will be available in all other SCSS files */
+
+$primary: #4DA1A9;
+$secondary: #7293A0;
+$success: #007B14;
+$warning: #674E35;
+$body-bg: #F2E8CF;
+$info: #F2E8CF;
+
+@import 'bootstrap/scss/functions'; /* Override Bootstrap's variables here */
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
