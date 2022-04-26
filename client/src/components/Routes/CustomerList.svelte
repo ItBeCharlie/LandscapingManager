@@ -4,11 +4,11 @@
 		focused: boolean;
 	}
 
-	let oldName = '';
-
 	export let importType: string = 'Default';
 
 	export let importElements: string[] = [];
+
+	export let importCurCustomer: string = '';
 
 	let availableElements: Element[] = [];
 
@@ -28,6 +28,10 @@
 		availableElements.map((element) => (element.focused = false));
 
 		availableElements[index].focused = !saveFocus;
+
+		if (availableElements[index].focused) {
+			importCurCustomer = availableElements[index].text;
+		} else importCurCustomer = '';
 	};
 </script>
 
