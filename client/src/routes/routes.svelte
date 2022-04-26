@@ -38,6 +38,8 @@
 		});
 
 		curLocations = curCustomer.locations;
+		handledLocation = { type: '', location: '' };
+		console.log(handledLocation);
 
 		// console.log(curLocations);
 	};
@@ -52,9 +54,13 @@
 
 	let curLocations: string[] = [];
 
+	let handledLocation = { type: '', location: '' };
+
 	$: parseLocations(curCustomerName);
 
-	// $: console.log(curCustomerName);
+	$: console.log(handledLocation);
+
+	$: console.log(curCustomerName);
 </script>
 
 <Header title="Routes" />
@@ -77,6 +83,10 @@
 	</div>
 	<div class="w-50 mx-2">
 		<h3 class="text-warning text-center">Locations</h3>
-		<AddLocation importElements={curLocations} importType="Location" />
+		<AddLocation
+			importElements={curLocations}
+			importType="Location"
+			bind:handleLocation={handledLocation}
+		/>
 	</div>
 </div>
