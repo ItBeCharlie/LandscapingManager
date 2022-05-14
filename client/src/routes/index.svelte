@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Header from '../components/Header.svelte';
 	import Icon from '../components/icon.svelte';
+	import { dummyUser } from '../models/User';
 </script>
 
 <Header title="Services" />
