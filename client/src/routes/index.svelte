@@ -1,11 +1,26 @@
 <script lang="ts">
 	import Header from '../components/Header.svelte';
-	import Icon from '../components/icon.svelte';
 	import { dummyUser } from '../models/User';
 </script>
 
-<Header title="Services" />
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
-<button type="button" class="btn btn-primary">Primary</button>
-<Icon type="options" />
+<Header title="Main Menu" />
+<div class="d-flex justify-content-around flex-wrap">
+	<a
+		href="customers"
+		type="button"
+		class="btn btn-outline-success border-3 btn-info text-center text-warning fw-bold my-2 fs-5 mx-2"
+		>Customers</a
+	>
+	<a
+		href="routes"
+		type="button"
+		class="btn btn-outline-success border-3 btn-info text-center text-warning fw-bold my-2 fs-5 mx-2"
+		>Routes</a
+	>
+	<a
+		href="services"
+		type="button"
+		class="btn btn-outline-success border-3 btn-info text-center text-warning fw-bold my-2 fs-5 mx-2"
+		>Services</a
+	>
+</div>

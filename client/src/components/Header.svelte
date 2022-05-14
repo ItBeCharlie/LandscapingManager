@@ -6,10 +6,11 @@
 	<div class="d-flex justify-content-between">
 		<!-- left -->
 		<div class="flex justify-start md:flex-1">
-			<button
+			<a
+				href="/"
 				type="button"
 				class="btn btn-outline-info border-0 btn-info text-primary"
-				style="font-size: 1.2rem; margin: 0.5rem">Back</button
+				style="font-size: 1.2rem; margin: 0.5rem">Back</a
 			>
 		</div>
 
@@ -18,10 +19,11 @@
 
 		<!-- right -->
 		<div class="flex justify-start md:flex-1">
-			<button
+			<a
+				href="login"
 				type="button"
 				class="btn btn-outline-info border-0 btn-info text-primary"
-				style="font-size: 1.2rem; margin: 0.5rem">Logout</button
+				style="font-size: 1.2rem; margin: 0.5rem">Login</a
 			>
 		</div>
 	</div>
