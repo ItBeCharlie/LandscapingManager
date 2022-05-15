@@ -6,7 +6,7 @@ import locationsController from './controllers/locations';
 import servicesController from './controllers/services';
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3030;
 app.use('/', express.static(`${__dirname}/public`))
 	.use((req: Request, res: Response, next: NextFunction) => {
 		res.header('Access-Control-Allow-Origin', '*');

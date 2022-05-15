@@ -9,9 +9,9 @@
 		};
 		const formData = new FormData(ev.target);
 		formData.forEach((value, key) => (form[key] = value));
-		dummyUser.username = form.username;
-		localStorage.setItem('user', JSON.stringify(dummyUser));
-		// console.log(form);
+		// dummyUser.username = form.username;
+		// localStorage.setItem('user', JSON.stringify(dummyUser));
+		console.log(form);
 	};
 
 	// $: console.log(form);

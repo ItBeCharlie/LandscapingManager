@@ -10,7 +10,7 @@ const customers_1 = __importDefault(require("./controllers/customers"));
 const locations_1 = __importDefault(require("./controllers/locations"));
 const services_1 = __importDefault(require("./controllers/services"));
 const app = express_1.default();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3030;
 app.use('/', express_1.default.static(`${__dirname}/public`))
     .use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
