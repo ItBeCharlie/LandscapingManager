@@ -1,0 +1,13 @@
+###
+
+post http://localhost:3000/api/users/seed
+
+
+###
+
+get http://localhost:3000/api/users
+
+
+###
+
+delete http://localhost:3000/api/users/1
