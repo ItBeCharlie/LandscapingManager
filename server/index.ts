@@ -4,6 +4,7 @@ import usersController from './controllers/users';
 import customersController from './controllers/customers';
 import locationsController from './controllers/locations';
 import servicesController from './controllers/services';
+import availableServicesController from './controllers/availableServices';
 
 const app = express();
 const port = process.env.PORT || 3030;
@@ -19,6 +20,7 @@ app.use('/', express.static(`${__dirname}/public`))
 	.use('/api/customers', customersController)
 	.use('/api/locations', locationsController)
 	.use('/api/services', servicesController)
+	.use('/api/availableServices', availableServicesController)
 	.use((err: any, req: Request, res: Response, next: NextFunction) => {
 		console.log(err);
 		switch (err.code) {

@@ -9,6 +9,7 @@ const users_1 = __importDefault(require("./controllers/users"));
 const customers_1 = __importDefault(require("./controllers/customers"));
 const locations_1 = __importDefault(require("./controllers/locations"));
 const services_1 = __importDefault(require("./controllers/services"));
+const availableServices_1 = __importDefault(require("./controllers/availableServices"));
 const app = express_1.default();
 const port = process.env.PORT || 3030;
 app.use('/', express_1.default.static(`${__dirname}/public`))
@@ -23,6 +24,7 @@ app.use('/', express_1.default.static(`${__dirname}/public`))
     .use('/api/customers', customers_1.default)
     .use('/api/locations', locations_1.default)
     .use('/api/services', services_1.default)
+    .use('/api/availableServices', availableServices_1.default)
     .use((err, req, res, next) => {
     console.log(err);
     switch (err.code) {

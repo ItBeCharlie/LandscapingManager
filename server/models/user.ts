@@ -6,6 +6,7 @@ export default class UserModel {
 		CREATE TABLE IF NOT EXISTS user (
 			user_id INT AUTO_INCREMENT,
 			username VARCHAR(255) NOT NULL UNIQUE,
+			name VARCHAR(255) NOT NULL,
 			email VARCHAR(255) NOT NULL,
 			password VARCHAR(255) NOT NULL,
 			dob INT NOT NULL,
@@ -54,20 +55,21 @@ export default class UserModel {
 	static async login(username: string, password: string): Promise<User> {
 		const sql = `
 		SELECT * FROM user
-		WHERE username = '${username}' AND password = '${password}'
+		WHERE username = '${username}'
 		`;
 		const user = await db.query(sql);
-		if (!user)
+		// console.log(user);
+		if (user.length !== 1)
 			throw {
 				message: 'User not found',
 			};
 
-		if (password != user[0].password)
+		if (password !== user[0].password)
 			throw {
 				message: 'Incorrect password',
 			};
 
-		return { ...user, password: undefined };
+		return { ...user[0], password: undefined };
 	}
 
 	static async remove(user_id: number): Promise<User> {
@@ -105,7 +107,8 @@ export default class UserModel {
 		username = '${user.username}',
 		email = '${user.email}',
 		password = '${user.password}',
-		dob = ${user.dob}
+		dob = ${user.dob},
+		name = '${user.name}'
 		WHERE user_id = ${user_id}
 		`;
 
@@ -127,8 +130,8 @@ export default class UserModel {
 			};
 		}
 
-		const sql = `INSERT INTO user (username, email, password, dob)
-		VALUES ('${user.username}', '${user.email}', '${user.password}', ${user.dob})
+		const sql = `INSERT INTO user (username, email, password, dob, name)
+		VALUES ('${user.username}', '${user.email}', '${user.password}', ${user.dob}, '${user.name}')
 		`;
 		const newUser = await db.query(sql);
 		user = await this.getUser(newUser.insertId);
@@ -150,6 +153,7 @@ const list: User[] = [
 		email: 'simple@email.com',
 		username: 'cool',
 		password: 'qwerty',
+		name: 'cool dude',
 		dob: new Date(),
 	},
 ];
@@ -158,6 +162,7 @@ export interface User {
 	user_id?: number;
 	email: string;
 	username: string;
+	name: string;
 	password?: string;
 	dob: Date;
 	created_at?: Date;

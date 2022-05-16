@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Header from '../components/Header.svelte';
-	import CustomerList from '../components/CustomerList.svelte';
+	import CustomerList from '../components/Routes/CustomerList.svelte';
 
 	const services: string[] = ['My Service', '2nd Service'];
 </script>

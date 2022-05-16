@@ -16,8 +16,13 @@
 
 		let res = await api('users/login', form, 'POST');
 		// console.log(res);
+
 		if (res.error) alert(res.error);
-		// else window.location.href = '/login';
+		else {
+			console.log(res);
+			localStorage.setItem('user', JSON.stringify(res));
+			window.location.href = '/';
+		}
 	};
 
 	// $: console.log(form);

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Header from '../components/Header.svelte';
-	import { dummyUser } from '../models/User';
 </script>
 
 <Header title="Main Menu" />

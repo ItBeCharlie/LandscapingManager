@@ -10,6 +10,7 @@ class UserModel {
 		CREATE TABLE IF NOT EXISTS user (
 			user_id INT AUTO_INCREMENT,
 			username VARCHAR(255) NOT NULL UNIQUE,
+			name VARCHAR(255) NOT NULL,
 			email VARCHAR(255) NOT NULL,
 			password VARCHAR(255) NOT NULL,
 			dob INT NOT NULL,
@@ -54,18 +55,18 @@ class UserModel {
     static async login(username, password) {
         const sql = `
 		SELECT * FROM user
-		WHERE username = '${username}' AND password = '${password}'
+		WHERE username = '${username}'
 		`;
         const user = await mySQL_1.default.query(sql);
-        if (!user)
+        if (user.length !== 1)
             throw {
                 message: 'User not found',
             };
-        if (password != user[0].password)
+        if (password !== user[0].password)
             throw {
                 message: 'Incorrect password',
             };
-        return { ...user, password: undefined };
+        return { ...user[0], password: undefined };
     }
     static async remove(user_id) {
         const findSql = `
@@ -99,7 +100,8 @@ class UserModel {
 		username = '${user.username}',
 		email = '${user.email}',
 		password = '${user.password}',
-		dob = ${user.dob}
+		dob = ${user.dob},
+		name = '${user.name}'
 		WHERE user_id = ${user_id}
 		`;
         await mySQL_1.default.query(updateSql);
@@ -116,8 +118,8 @@ class UserModel {
                 message: 'Username already exists, select a different username',
             };
         }
-        const sql = `INSERT INTO user (username, email, password, dob)
-		VALUES ('${user.username}', '${user.email}', '${user.password}', ${user.dob})
+        const sql = `INSERT INTO user (username, email, password, dob, name)
+		VALUES ('${user.username}', '${user.email}', '${user.password}', ${user.dob}, '${user.name}')
 		`;
         const newUser = await mySQL_1.default.query(sql);
         user = await this.getUser(newUser.insertId);
@@ -136,6 +138,7 @@ const list = [
         email: 'simple@email.com',
         username: 'cool',
         password: 'qwerty',
+        name: 'cool dude',
         dob: new Date(),
     },
 ];
