@@ -25,24 +25,32 @@ app.get('/all/:id', (req, res, next) => {
 			.catch(next);
 	})
 	.post('/', (req, res, next) => {
-		ServiceModel.create(req.body).then((service) => {
-			res.send(service);
-		});
+		ServiceModel.create(req.body)
+			.then((service) => {
+				res.send(service);
+			})
+			.catch(next);
 	})
 	.delete('/:id', (req, res, next) => {
-		ServiceModel.remove(parseInt(req.params.id)).then((service) => {
-			res.send(service);
-		});
+		ServiceModel.remove(parseInt(req.params.id))
+			.then((service) => {
+				res.send(service);
+			})
+			.catch(next);
 	})
 	.patch('/:id', (req, res, next) => {
-		ServiceModel.update(parseInt(req.params.id), req.body).then((service) => {
-			res.send(service);
-		});
+		ServiceModel.update(parseInt(req.params.id), req.body)
+			.then((service) => {
+				res.send(service);
+			})
+			.catch(next);
 	})
 	.post('/seed', (req, res, next) => {
-		ServiceModel.seed().then((service) => {
-			res.send(service);
-		});
+		ServiceModel.seed()
+			.then((service) => {
+				res.send(service);
+			})
+			.catch(next);
 	});
 
 export default app;

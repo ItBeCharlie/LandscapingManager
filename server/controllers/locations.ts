@@ -25,24 +25,32 @@ app.get('/all/', (req, res, next) => {
 			.catch(next);
 	})
 	.post('/', (req, res, next) => {
-		LocationModel.create(req.body).then((location) => {
-			res.send(location);
-		});
+		LocationModel.create(req.body)
+			.then((location) => {
+				res.send(location);
+			})
+			.catch(next);
 	})
 	.delete('/:id', (req, res, next) => {
-		LocationModel.remove(parseInt(req.params.id)).then((location) => {
-			res.send(location);
-		});
+		LocationModel.remove(parseInt(req.params.id))
+			.then((location) => {
+				res.send(location);
+			})
+			.catch(next);
 	})
 	.patch('/:id', (req, res, next) => {
-		LocationModel.update(parseInt(req.params.id), req.body).then((location) => {
-			res.send(location);
-		});
+		LocationModel.update(parseInt(req.params.id), req.body)
+			.then((location) => {
+				res.send(location);
+			})
+			.catch(next);
 	})
 	.post('/seed', (req, res, next) => {
-		LocationModel.seed().then((location) => {
-			res.send(location);
-		});
+		LocationModel.seed()
+			.then((location) => {
+				res.send(location);
+			})
+			.catch(next);
 	});
 
 export default app;

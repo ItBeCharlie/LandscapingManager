@@ -1,88 +1,76 @@
 <script lang="ts">
 	import Header from '../components/Header.svelte';
 	import { dummyUser } from '../models/User';
-	let form = {
-		firstname: '',
-		lastname: '',
-		username: '',
-		password: '',
-		email: '',
-		birthdate: ''
-	};
+	import { api } from '../models/myFetch';
 
-	$: console.log(form);
+	const loginButtonPressed = async (ev: any) => {
+		let form: any = {
+			firstname: '',
+			lastname: '',
+			username: '',
+			password: '',
+			email: '',
+			dob: ''
+		};
+		const formData = new FormData(ev.target);
+		formData.forEach((value, key) => (form[key] = value));
+		// dummyUser.username = form.username;
+		// localStorage.setItem('user', JSON.stringify(dummyUser));
+		// console.log(form);
+		// console.log(form.dob);
+		form.dob = Math.floor(new Date(form.dob).getTime() / 1000);
+		// console.log(form.dob);
+		// console.log(Math.floor(form.dob.getTime() / 1000));
+
+		let res = await api(
+			'users/register',
+			{ ...form, name: `${form.firstname} ${form.lastname}` },
+			'POST'
+		);
+		// console.log(res);
+		if (res.error) alert(res.error);
+		else window.location.href = '/login';
+	};
 </script>
 
 <Header title="Register" />
 
 <div class="container">
-	<form>
+	<form on:submit|preventDefault={loginButtonPressed}>
 		<!-- Firstname input -->
 		<div class="form-outline mb-4">
-			<input
-				type="text"
-				id="form_firstname"
-				pattern="[a-zA-Z' ]"
-				class="form-control"
-				required
-				bind:value={form.firstname}
-			/>
-			<label class="form-label" for="form_firstname">First Name</label>
+			<input type="text" name="firstname" class="form-control" required />
+			<label class="form-label" for="firstname">First Name</label>
 		</div>
 
 		<!-- Lastname input -->
 		<div class="form-outline mb-4">
-			<input
-				type="text"
-				id="form_lastname"
-				pattern="[a-zA-Z' ]"
-				class="form-control"
-				required
-				bind:value={form.lastname}
-			/>
-			<label class="form-label" for="form_lastname">Last Name</label>
+			<input type="text" name="lastname" class="form-control" required />
+			<label class="form-label" for="lastname">Last Name</label>
 		</div>
 
 		<!-- Username input -->
 		<div class="form-outline mb-4">
-			<input
-				type="text"
-				id="form_username"
-				class="form-control"
-				required
-				bind:value={form.username}
-			/>
-			<label class="form-label" for="form_username">Username</label>
+			<input type="text" name="username" class="form-control" required />
+			<label class="form-label" for="username">Username</label>
 		</div>
 
 		<!-- Birthdate input -->
 		<div class="form-outline mb-4">
-			<input
-				type="date"
-				id="form_birthdate"
-				class="form-control"
-				required
-				bind:value={form.birthdate}
-			/>
-			<label class="form-label" for="form_birthdate">Birthdate</label>
+			<input type="date" name="dob" class="form-control" required />
+			<label class="form-label" for="dob">Birthdate</label>
 		</div>
 
 		<!-- Email input -->
 		<div class="form-outline mb-4">
-			<input type="email" id="form_email" class="form-control" required bind:value={form.email} />
-			<label class="form-label" for="form_email">Email address</label>
+			<input type="email" name="email" class="form-control" required />
+			<label class="form-label" for="email">Email address</label>
 		</div>
 
 		<!-- Password input -->
 		<div class="form-outline mb-4">
-			<input
-				type="password"
-				id="form_password"
-				class="form-control"
-				required
-				bind:value={form.password}
-			/>
-			<label class="form-label" for="form_password">Password</label>
+			<input type="password" name="password" class="form-control" required />
+			<label class="form-label" for="password">Password</label>
 		</div>
 
 		<!-- 2 column grid layout for inline styling -->
@@ -102,6 +90,6 @@
 		<!-- </div> -->
 
 		<!-- Submit button -->
-		<button type="button" class="btn btn-primary btn-block mb-4">Register</button>
+		<input type="submit" class="btn btn-primary btn-block mb-4" value="Register" />
 	</form>
 </div>

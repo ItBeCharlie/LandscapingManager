@@ -25,24 +25,32 @@ app.get('/all/:id', (req, res, next) => {
 			.catch(next);
 	})
 	.post('/', (req, res, next) => {
-		CustomerModel.create(req.body).then((customer) => {
-			res.send(customer);
-		});
+		CustomerModel.create(req.body)
+			.then((customer) => {
+				res.send(customer);
+			})
+			.catch(next);
 	})
 	.delete('/:id', (req, res, next) => {
-		CustomerModel.remove(parseInt(req.params.id)).then((customer) => {
-			res.send(customer);
-		});
+		CustomerModel.remove(parseInt(req.params.id))
+			.then((customer) => {
+				res.send(customer);
+			})
+			.catch(next);
 	})
 	.patch('/:id', (req, res, next) => {
-		CustomerModel.update(parseInt(req.params.id), req.body).then((customer) => {
-			res.send(customer);
-		});
+		CustomerModel.update(parseInt(req.params.id), req.body)
+			.then((customer) => {
+				res.send(customer);
+			})
+			.catch(next);
 	})
 	.post('/seed', (req, res, next) => {
-		CustomerModel.seed().then((customer) => {
-			res.send(customer);
-		});
+		CustomerModel.seed()
+			.then((customer) => {
+				res.send(customer);
+			})
+			.catch(next);
 	});
 
 export default app;

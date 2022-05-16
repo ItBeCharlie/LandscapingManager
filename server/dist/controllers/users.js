@@ -54,6 +54,13 @@ app.get('/', (req, res, next) => {
         res.send(users);
     })
         .catch(next);
+})
+    .post('/register', (req, res, next) => {
+    user_1.default.create(req.body)
+        .then((users) => {
+        res.send(users);
+    })
+        .catch(next);
 });
 exports.default = app;
 //# sourceMappingURL=users.js.map

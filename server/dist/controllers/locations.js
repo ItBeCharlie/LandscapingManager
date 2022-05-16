@@ -28,24 +28,32 @@ app.get('/all/', (req, res, next) => {
         .catch(next);
 })
     .post('/', (req, res, next) => {
-    location_1.default.create(req.body).then((location) => {
+    location_1.default.create(req.body)
+        .then((location) => {
         res.send(location);
-    });
+    })
+        .catch(next);
 })
     .delete('/:id', (req, res, next) => {
-    location_1.default.remove(parseInt(req.params.id)).then((location) => {
+    location_1.default.remove(parseInt(req.params.id))
+        .then((location) => {
         res.send(location);
-    });
+    })
+        .catch(next);
 })
     .patch('/:id', (req, res, next) => {
-    location_1.default.update(parseInt(req.params.id), req.body).then((location) => {
+    location_1.default.update(parseInt(req.params.id), req.body)
+        .then((location) => {
         res.send(location);
-    });
+    })
+        .catch(next);
 })
     .post('/seed', (req, res, next) => {
-    location_1.default.seed().then((location) => {
+    location_1.default.seed()
+        .then((location) => {
         res.send(location);
-    });
+    })
+        .catch(next);
 });
 exports.default = app;
 //# sourceMappingURL=locations.js.map

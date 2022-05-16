@@ -1,8 +1,9 @@
 <script lang="ts">
+	import { api } from '../models/myFetch';
 	import Header from '../components/Header.svelte';
 	import { dummyUser } from '../models/User';
 
-	const loginButtonPressed = (ev: any) => {
+	const loginButtonPressed = async (ev: any) => {
 		let form: any = {
 			username: '',
 			password: ''
@@ -11,7 +12,12 @@
 		formData.forEach((value, key) => (form[key] = value));
 		// dummyUser.username = form.username;
 		// localStorage.setItem('user', JSON.stringify(dummyUser));
-		console.log(form);
+		// console.log(form);
+
+		let res = await api('users/login', form, 'POST');
+		// console.log(res);
+		if (res.error) alert(res.error);
+		// else window.location.href = '/login';
 	};
 
 	// $: console.log(form);

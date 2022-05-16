@@ -28,24 +28,32 @@ app.get('/all/:id', (req, res, next) => {
         .catch(next);
 })
     .post('/', (req, res, next) => {
-    customer_1.default.create(req.body).then((customer) => {
+    customer_1.default.create(req.body)
+        .then((customer) => {
         res.send(customer);
-    });
+    })
+        .catch(next);
 })
     .delete('/:id', (req, res, next) => {
-    customer_1.default.remove(parseInt(req.params.id)).then((customer) => {
+    customer_1.default.remove(parseInt(req.params.id))
+        .then((customer) => {
         res.send(customer);
-    });
+    })
+        .catch(next);
 })
     .patch('/:id', (req, res, next) => {
-    customer_1.default.update(parseInt(req.params.id), req.body).then((customer) => {
+    customer_1.default.update(parseInt(req.params.id), req.body)
+        .then((customer) => {
         res.send(customer);
-    });
+    })
+        .catch(next);
 })
     .post('/seed', (req, res, next) => {
-    customer_1.default.seed().then((customer) => {
+    customer_1.default.seed()
+        .then((customer) => {
         res.send(customer);
-    });
+    })
+        .catch(next);
 });
 exports.default = app;
 //# sourceMappingURL=customers.js.map

@@ -119,11 +119,20 @@ export default class UserModel {
 				message: 'Password is required',
 			};
 
+		let nextUser = await this.getUserByUsername(user.username);
+		// console.log(nextUser, user.username);
+		if (nextUser.username) {
+			throw {
+				message: 'Username already exists, select a different username',
+			};
+		}
+
 		const sql = `INSERT INTO user (username, email, password, dob)
-		VALUES ('${user.username}', '${user.email}', '${user.password}', ${Math.floor(user.dob.getTime() / 1000)})
+		VALUES ('${user.username}', '${user.email}', '${user.password}', ${user.dob})
 		`;
 		const newUser = await db.query(sql);
 		user = await this.getUser(newUser.insertId);
+		console.log('Inserted!!!');
 		return { ...user, password: undefined };
 	}
 

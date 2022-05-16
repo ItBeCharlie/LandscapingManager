@@ -51,6 +51,13 @@ app.get('/', (req, res, next) => {
 				res.send(users);
 			})
 			.catch(next);
+	})
+	.post('/register', (req, res, next) => {
+		UserModel.create(req.body)
+			.then((users) => {
+				res.send(users);
+			})
+			.catch(next);
 	});
 
 export default app;
