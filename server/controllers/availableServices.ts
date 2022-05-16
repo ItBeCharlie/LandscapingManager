@@ -3,7 +3,7 @@ import AvailableServiceModel from '../models/availableService';
 
 const app = express.Router();
 
-app.get('/all/:id', (req, res, next) => {
+app.get('/all', (req, res, next) => {
 	AvailableServiceModel.getAll()
 		.then((availableServices) => {
 			res.send(availableServices);

@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const availableService_1 = __importDefault(require("../models/availableService"));
 const app = express_1.default.Router();
-app.get('/all/:id', (req, res, next) => {
+app.get('/all', (req, res, next) => {
     availableService_1.default.getAll()
         .then((availableServices) => {
         res.send(availableServices);

@@ -1,8 +1,23 @@
 <script lang="ts">
 	import Header from '../components/Header.svelte';
-	import AddList from '../components/AddList.svelte';
+	import AddList from '../components/Services/AddList.svelte';
+	import { onMount } from 'svelte';
+	import { api } from '../models/myFetch';
 
-	const services: string[] = ['My Service', '2nd Service'];
+	let curUser: any = null;
+	let services: string[] = [];
+	onMount(async () => {
+		curUser = localStorage.getItem('user');
+		if (curUser != null) curUser = JSON.parse(curUser);
+		let res = await api('availableServices/all', 'GET');
+		console.log(res);
+
+		if (!res.error) {
+			res.forEach((element: { name: string }) => {
+				services.push(element.name);
+			});
+		}
+	});
 </script>
 
 <Header title="Services" />
