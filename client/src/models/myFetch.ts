@@ -20,5 +20,6 @@ export const api = async (path: string, body?: any, method?: string, headers?: H
 	}
 
 	const res = await fetch(`${API_URL}${path}`, options);
+	// console.log(res.error);
 	return await res.json();
 };

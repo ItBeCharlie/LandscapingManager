@@ -9,7 +9,7 @@
 	onMount(async () => {
 		curUser = localStorage.getItem('user');
 		if (curUser != null) curUser = JSON.parse(curUser);
-		let res = await api('availableServices/all', 'GET');
+		let res = await api('availableServices/all');
 		console.log(res);
 
 		if (!res.error) {

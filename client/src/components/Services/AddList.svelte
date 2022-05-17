@@ -18,9 +18,16 @@
 
 	let availableElements: Element[] = [];
 
-	importElements.map((elementName, i) => {
-		availableElements.push({ text: elementName, focused: false, editing: false });
+	onMount(() => {
+		importElements.map((elementName, i) => {
+			availableElements.push({ text: elementName, focused: false, editing: false });
+		});
+		console.log(availableElements);
 	});
+
+	console.log(availableElements);
+
+	$: (importElements: any) => {};
 
 	// for (let i = 0; i <= 5; i++)
 	// 	availableElements.push({ text: 'New Element', focused: false, editing: false });
@@ -53,18 +60,19 @@
 	};
 
 	const saveElement = async (index: number) => {
-		let oldSer = await api(`/one/${oldName}`);
-		let newSer = await api(`/one/${changeName}`);
+		let oldSer = await api(`availableServices/one/${oldName}`);
+		let newSer = await api(`availableServices/one/${changeName}`);
 		if (oldSer == null) {
 			if (newSer == null) {
-				api('/', { name: newSer }, 'POST');
+				let res = api('availableServices/', { name: newSer }, 'POST');
+				console.log(res);
 			} else {
 				alert('Service already exists');
 				return;
 			}
 		} else {
 			if (newSer == null) {
-				api(`/${oldSer.availableService_id}`, { name: newSer }, 'PATCH');
+				api(`availableServices/${oldSer.availableService_id}`, { name: newSer }, 'PATCH');
 			} else {
 				alert('Service already exists');
 				return;

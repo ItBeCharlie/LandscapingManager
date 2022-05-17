@@ -8,7 +8,7 @@ export default class AvailableServiceModel {
 			name VARCHAR(255) NOT NULL UNIQUE,
 			created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 			updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-			CONSTRAINT pk_availableService PRIMARY KEY (availableService_id),
+			CONSTRAINT pk_availableService PRIMARY KEY (availableService_id)
 			)`;
 		await db.query(sql);
 	}
